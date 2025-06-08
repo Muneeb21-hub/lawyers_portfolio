@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Blog posts preview for Home page (static for now)
 const posts = [
@@ -63,12 +64,12 @@ export default function BlogPreview() {
 					))}
 				</div>
 				<div className="text-center mt-6">
-					<a
+					<Link
 						href="/blog"
 						className="text-blue-900 font-semibold underline hover:text-blue-700 transition"
 					>
 						Read All Posts
-					</a>
+					</Link>
 				</div>
 			</div>
 		</motion.section>

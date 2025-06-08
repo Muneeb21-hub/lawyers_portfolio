@@ -11,16 +11,18 @@ export async function generateStaticParams() {
   return slugs.map((slug: string) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { frontmatter } = await getCaseBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const { frontmatter } = await getCaseBySlug(slug);
   return {
     title: frontmatter.title,
     description: frontmatter.outcome,
   };
 }
 
-export default async function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const { frontmatter, content } = await getCaseBySlug(params.slug);
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const { frontmatter, content } = await getCaseBySlug(slug);
   if (!frontmatter) return notFound();
   return <CaseMotionSection frontmatter={frontmatter} content={content} />;
 }

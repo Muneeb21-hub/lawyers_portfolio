@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 // About preview section for Home page
 export default function AboutPreview() {
@@ -14,7 +15,13 @@ export default function AboutPreview() {
       <div className="max-w-3xl mx-auto flex flex-col items-center">
         <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-900 to-yellow-400 shadow-lg mb-4 flex items-center justify-center overflow-hidden">
           {/* Replace with actual lawyer photo */}
-          <img src="/images/lawyer_pic.jpg" alt="Adv. Muhammad Babar" />
+          <Image
+            src="/images/lawyer_pic.jpg"
+            alt="Adv. Muhammad Babar"
+            width={128}
+            height={128}
+            className="rounded-full object-cover"
+          />
         </div>
         <h2 className="text-2xl font-bold mb-2 text-blue-900">About Me</h2>
         <p className="text-gray-700 mb-4">

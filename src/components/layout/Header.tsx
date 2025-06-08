@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { ScaleIcon } from "@heroicons/react/24/outline"; // You can use any law-themed icon
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Header() {
   // Persist dark mode in localStorage and sync with system preference
@@ -50,13 +51,13 @@ export default function Header() {
         </span>
       </div>
       <nav className="hidden md:flex space-x-6 text-base font-medium">
-        <a href="/" className="hover:text-blue-700 transition-colors">Home</a>
-        <a href="/about" className="hover:text-blue-700 transition-colors">About</a>
-        <a href="/practice" className="hover:text-blue-700 transition-colors">Practice</a>
-        <a href="/cases" className="hover:text-blue-700 transition-colors">Cases</a>
-        <a href="/blog" className="hover:text-blue-700 transition-colors">Blog</a>
-        <a href="/contact" className="hover:text-blue-700 transition-colors">Contact</a>
-        <a href="/legal" className="hover:text-blue-700 transition-colors">Legal</a>
+        <Link href="/" className="hover:text-blue-700 transition-colors">Home</Link>
+        <Link href="/about" className="hover:text-blue-700 transition-colors">About</Link>
+        <Link href="/practice" className="hover:text-blue-700 transition-colors">Practice</Link>
+        <Link href="/cases" className="hover:text-blue-700 transition-colors">Cases</Link>
+        <Link href="/blog" className="hover:text-blue-700 transition-colors">Blog</Link>
+        <Link href="/contact" className="hover:text-blue-700 transition-colors">Contact</Link>
+        <Link href="/legal" className="hover:text-blue-700 transition-colors">Legal</Link>
       </nav>
       <div className="flex items-center gap-2">
         <button

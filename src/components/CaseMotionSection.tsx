@@ -1,8 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import type { CaseFrontmatter } from "@/lib/cases";
 
-export default function CaseMotionSection({ frontmatter, content }: { frontmatter: any, content: string }) {
+export default function CaseMotionSection({ frontmatter, content }: { frontmatter: CaseFrontmatter, content: string }) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}

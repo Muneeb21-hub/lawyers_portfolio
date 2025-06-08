@@ -10,9 +10,17 @@ export async function getAllBlogSlugs() {
     .map((file) => file.replace(/\.(md|mdx)$/, ""));
 }
 
-export async function getBlogBySlug(slug: string) {
+export async function getBlogBySlug(slug: string): Promise<{ frontmatter: BlogFrontmatter; content: string }> {
   const filePath = path.join(process.cwd(), "content/blog", `${slug}.md`);
   const source = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(source);
-  return { frontmatter: data, content };
+  return { frontmatter: data as BlogFrontmatter, content };
 }
+
+export type BlogFrontmatter = {
+  title?: string;
+  excerpt?: string;
+  date?: string;
+  author?: string;
+  [key: string]: unknown;
+};

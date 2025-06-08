@@ -11,16 +11,18 @@ export async function generateStaticParams() {
   return slugs.map((slug: string) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { frontmatter } = await getBlogBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const { frontmatter } = await getBlogBySlug(slug);
   return {
     title: frontmatter.title,
     description: frontmatter.excerpt,
   };
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { frontmatter, content } = await getBlogBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const { frontmatter, content } = await getBlogBySlug(slug);
   if (!frontmatter) return notFound();
   return <BlogMotionSection frontmatter={frontmatter} content={content} />;
 }

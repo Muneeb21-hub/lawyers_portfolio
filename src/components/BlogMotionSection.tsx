@@ -1,8 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import type { BlogFrontmatter } from "@/lib/blog";
 
-export default function BlogMotionSection({ frontmatter, content }: { frontmatter: any, content: string }) {
+export default function BlogMotionSection({ frontmatter, content }: { frontmatter: BlogFrontmatter, content: string }) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}

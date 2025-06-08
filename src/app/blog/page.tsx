@@ -1,7 +1,6 @@
 // Blog list page route
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { getAllBlogSlugs, getBlogBySlug } from "@/lib/blog";
 import { useEffect, useState } from "react";
 
@@ -16,13 +15,17 @@ export default function BlogPage() {
 	const [posts, setPosts] = useState<BlogPost[]>([]);
 
 	useEffect(() => {
-		const slugsRaw = getAllBlogSlugs();
-		const slugs = Array.isArray(slugsRaw) ? slugsRaw : [];
-		const loadedPosts: BlogPost[] = slugs.map((slug) => {
-			const { frontmatter } = getBlogBySlug(slug);
-			return { slug, ...(frontmatter || {}) };
-		});
-		setPosts(loadedPosts);
+		(async () => {
+			const slugsRaw = await getAllBlogSlugs();
+			const slugs = Array.isArray(slugsRaw) ? slugsRaw : [];
+			const loadedPosts: BlogPost[] = await Promise.all(
+				slugs.map(async (slug) => {
+					const { frontmatter } = await getBlogBySlug(slug);
+					return { slug, ...(frontmatter || {}) };
+				})
+			);
+			setPosts(loadedPosts);
+		})();
 	}, []);
 
 	return (

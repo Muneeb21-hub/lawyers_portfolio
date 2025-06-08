@@ -1,6 +1,7 @@
 // About page route
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -13,7 +14,7 @@ export default function AboutPage() {
       <div className="flex flex-col md:flex-row items-center gap-8">
         <div className="w-400 h-100 rounded-full bg-gradient-to-br from-blue-900 to-yellow-400 shadow-lg flex items-center justify-center overflow-hidden mb-6 md:mb-0">
           {/* Replace with actual lawyer photo */}
-          <img src="/images/lawyer_pic.jpg" alt="Adv. Muhammad Babar" />
+          <Image src="/images/lawyer_pic.jpg" alt="Adv. Muhammad Babar" width={128} height={128} className="rounded-full object-cover" />
         </div>
         <div>
           <h1 className="text-3xl font-bold text-blue-900 mb-2">Adv. Muhammad Babar</h1>

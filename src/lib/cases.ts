@@ -11,9 +11,17 @@ export async function getAllCaseSlugs() {
     .map((file) => file.replace(/\.(md|mdx)$/, ""));
 }
 
-export async function getCaseBySlug(slug: string) {
+export async function getCaseBySlug(slug: string): Promise<{ frontmatter: CaseFrontmatter; content: string }> {
   const filePath = path.join(process.cwd(), "content/cases", `${slug}.md`);
   const source = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(source);
-  return { frontmatter: data, content };
+  return { frontmatter: data as CaseFrontmatter, content };
 }
+
+export type CaseFrontmatter = {
+  title?: string;
+  type?: string;
+  outcome?: string;
+  testimonial?: string;
+  [key: string]: unknown;
+};
