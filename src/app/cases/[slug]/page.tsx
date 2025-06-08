@@ -1,7 +1,6 @@
 // Dynamic case study route
 // Example: /cases/successful-case
 
-"use client";
 import { motion } from "framer-motion";
 import { getAllCaseSlugs, getCaseBySlug } from "@/lib/cases";
 import { MDXRemote } from "next-mdx-remote/rsc";
