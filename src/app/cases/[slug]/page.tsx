@@ -7,19 +7,20 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  return getAllCaseSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllCaseSlugs();
+  return slugs.map((slug: string) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { frontmatter } = getCaseBySlug(params.slug);
+  const { frontmatter } = await getCaseBySlug(params.slug);
   return {
     title: frontmatter.title,
     description: frontmatter.outcome,
   };
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const { frontmatter, content } = getCaseBySlug(params.slug);
+export default async function CaseStudyPage({ params }: { params: { slug: string } }) {
+  const { frontmatter, content } = await getCaseBySlug(params.slug);
   if (!frontmatter) return notFound();
   return <CaseMotionSection frontmatter={frontmatter} content={content} />;
 }

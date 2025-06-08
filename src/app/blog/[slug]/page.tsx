@@ -7,19 +7,20 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  return getAllBlogSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllBlogSlugs();
+  return slugs.map((slug: string) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { frontmatter } = getBlogBySlug(params.slug);
+  const { frontmatter } = await getBlogBySlug(params.slug);
   return {
     title: frontmatter.title,
     description: frontmatter.excerpt,
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { frontmatter, content } = getBlogBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const { frontmatter, content } = await getBlogBySlug(params.slug);
   if (!frontmatter) return notFound();
   return <BlogMotionSection frontmatter={frontmatter} content={content} />;
 }
