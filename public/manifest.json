@@ -1,0 +1,21 @@
+{
+  "name": "Adv. Muhammad Babar | Lawyer Portfolio",
+  "short_name": "LawyerPortfolio",
+  "description": "Professional, modern, and responsive portfolio website for a lawyer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a2240",
+  "theme_color": "#0a2240",
+  "icons": [
+    {
+      "src": "/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
