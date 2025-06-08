@@ -1,7 +1,6 @@
 // Dynamic blog post route
 // Example: /blog/my-first-post
 
-"use client";
 import { motion } from "framer-motion";
 import { getAllBlogSlugs, getBlogBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
